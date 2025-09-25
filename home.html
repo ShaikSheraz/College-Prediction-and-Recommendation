@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h2>Welcome to College Admission Predictor</h2>
+    <p class="lead">Predict your chance of admission or get recommended colleges based on your rank.</p>
+    
+    <div class="mt-4">
+        <a href="{{ url_for('predict') }}" class="btn btn-success btn-lg m-3">Predict Admission</a>
+        <a href="{{ url_for('recommendation') }}" class="btn btn-info btn-lg m-3">Get Recommendations</a>
+    </div>
+</div>
+{% endblock %}

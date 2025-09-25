@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Recommended Colleges</h2>
+<form method="POST" class="mt-3">
+    {% for field in ['rank','exam','category','branch'] %}
+    <div class="mb-3">
+        <label class="form-label">{{ field|capitalize }}</label>
+        <input type="text" name="{{ field }}" class="form-control" {% if field=='rank' %}type="number"{% endif %} required>
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-info">Get Recommendations</button>
+</form>
+
+{% if recommendations %}
+<h4 class="mt-4">Top Recommended Colleges</h4>
+<canvas id="recChart" height="200"></canvas>
+<canvas id="pieChart" height="200" class="mt-4"></canvas>
+
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script>
+const labels = {{ recommendations|map(attribute='college')|list|tojson }};
+const data = {{ recommendations|map(attribute='prob')|list|tojson }};
+renderCharts(labels, data);
+</script>
+{% endif %}
+{% endblock %}

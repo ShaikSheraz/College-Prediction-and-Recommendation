@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Predict Admission Probability</h2>
+<form method="POST" class="mt-4">
+    {% for field in ['rank','exam','category','branch','college'] %}
+    <div class="mb-3">
+        <label class="form-label">{{ field|capitalize }}</label>
+        <input type="text" name="{{ field }}" class="form-control" {% if field=='rank' %}type="number"{% endif %} required>
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-success">Predict</button>
+</form>
+
+{% if result %}
+<div class="mt-4">
+    <h4>Admission Likely: {{ 'Yes' if result.admit else 'No' }}</h4>
+    <h5>Probability: {{ result.probability }}%</h5>
+    <div class="progress mt-2">
+        <div class="progress-bar 
+             {% if result.probability>=70 %}bg-success
+             {% elif result.probability>=40 %}bg-warning
+             {% else %}bg-danger{% endif %}" 
+             role="progressbar" 
+             style="width: '{{ result.probability }}%'">
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
