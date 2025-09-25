@@ -1,0 +1,24 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    color: #0d6efd;
+}
+
+.progress-bar {
+    transition: width 1s ease-in-out;
+}
+
+canvas {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+}
